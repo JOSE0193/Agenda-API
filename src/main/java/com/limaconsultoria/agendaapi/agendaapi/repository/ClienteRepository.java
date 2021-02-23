@@ -2,10 +2,12 @@ package com.limaconsultoria.agendaapi.agendaapi.repository;
 
 
 import com.limaconsultoria.agendaapi.agendaapi.domain.Cliente;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
-public interface ClienteRepository {
+@Repository
+public interface ClienteRepository extends JpaRepository(Cliente, Integer) {
     List<Cliente> listAll();
 }

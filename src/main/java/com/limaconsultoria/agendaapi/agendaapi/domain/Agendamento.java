@@ -20,7 +20,7 @@ import java.util.List;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private Date data;
     private String observacoes;
 

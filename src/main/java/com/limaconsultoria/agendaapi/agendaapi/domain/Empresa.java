@@ -20,7 +20,7 @@ public class Empresa implements Serializable {
     }
     @Id( = "id_empresa")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String nome_empresa;
     private String Cnpj;
     private String email_empresa;

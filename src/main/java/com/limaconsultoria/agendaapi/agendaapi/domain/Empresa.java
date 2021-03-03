@@ -1,5 +1,6 @@
 package com.limaconsultoria.agendaapi.agendaapi.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -7,24 +8,18 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
-@AllArgsConstructor
 @Entity
+@AllArgsConstructor
 public class Empresa implements Serializable {
-    private static long serialVersionUID;
+    private static long serialVersionUID = 1L;
 
-    static {
-        serialVersionUID = 1L;
-    }
-    @Id( = "id_empresa")
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome_empresa;
+
+    @Column(nullable = false)
+    private String nome;
     private String Cnpj;
-    private String email_empresa;
-
-    @OneToOne
-    @JoinColumn(name = "Servico_id")
-    private Servico servico;
-
+    private String email;
 
 }

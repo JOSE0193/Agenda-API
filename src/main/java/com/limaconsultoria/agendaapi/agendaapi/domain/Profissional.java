@@ -9,7 +9,6 @@ import java.io.Serializable;
 
 
 @Data
-@AllArgsConstructor
 @Entity
 public class Profissional implements Serializable {
     private static long serialVersionUID;
@@ -19,6 +18,8 @@ public class Profissional implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome_profissional;
-    private String email_profissional;
+
+    @Column(nullable = false)
+    private String nome;
+    private String email;
 }

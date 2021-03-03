@@ -1,25 +1,22 @@
 package com.limaconsultoria.agendaapi.agendaapi.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.io.Serializable;
 
-
+@Builder
 @Data
 @Entity
-public class Profissional implements Serializable {
-    private static long serialVersionUID;
-    static {
-        serialVersionUID = 1L;
-    }
+@AllArgsConstructor
+@NoArgsConstructor
+public class Profissional {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false)
     private String nome;
     private String email;
 }

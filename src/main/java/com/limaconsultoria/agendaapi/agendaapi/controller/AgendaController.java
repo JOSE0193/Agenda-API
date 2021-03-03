@@ -18,8 +18,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Log4j2
+
 public class AgendaController {
-    private AgendamentoService agendamentoService;
+
+    private final AgendamentoService agendamentoService;
     private final DateUtil dateUtil;
 
     @GetMapping
@@ -39,13 +41,13 @@ public class AgendaController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<void> delete(@PathVariable Integer id){
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
         agendamentoService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping
-    public ResponseEntity<void> replace(@RequestBody AgendaPutRequestBody agendaPutRequestBody){
+    public ResponseEntity<Void> replace(@RequestBody AgendaPutRequestBody agendaPutRequestBody){
         agendamentoService.replace(agendaPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -1,23 +1,22 @@
 package com.limaconsultoria.agendaapi.agendaapi.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
+@Builder
 @Data
 @Entity
-public class Servico implements Serializable {
-        private static long serialVersionUID;
+@AllArgsConstructor
+@NoArgsConstructor
+public class Servico {
 
-        static {
-            serialVersionUID = 1L;
-        }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false)
     private String nome;
     private String categoria;
 

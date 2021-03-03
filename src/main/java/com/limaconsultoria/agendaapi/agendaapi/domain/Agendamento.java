@@ -1,25 +1,22 @@
 package com.limaconsultoria.agendaapi.agendaapi.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Data
 @Entity
-    public class Agendamento implements Serializable {
-    private static long serialVersionUID;
-
-    static {
-        serialVersionUID = 1L;
-    }
-
+    public class Agendamento{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false)
     private Date data;
     private String observacoes;
 

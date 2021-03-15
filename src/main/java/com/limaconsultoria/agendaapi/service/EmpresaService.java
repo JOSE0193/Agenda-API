@@ -1,13 +1,12 @@
 package com.limaconsultoria.agendaapi.service;
 
 import com.limaconsultoria.agendaapi.domain.Empresa;
+import com.limaconsultoria.agendaapi.exception.BadRequestException;
 import com.limaconsultoria.agendaapi.mapper.EmpresaMapper;
 import com.limaconsultoria.agendaapi.repository.EmpresaRepository;
 import com.limaconsultoria.agendaapi.request.EmpresaDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
@@ -25,7 +24,7 @@ public class EmpresaService {
 
         public Empresa findByIdThrowBadRequestException(Long id) {
             return empresaRepository.findById(id)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empresa not Found"));
+                    .orElseThrow(() -> new BadRequestException("Empresa not Found"));
         }
 
         public Empresa save(EmpresaDTO empresaDTO) {

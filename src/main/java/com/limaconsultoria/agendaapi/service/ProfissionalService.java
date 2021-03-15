@@ -2,13 +2,12 @@ package com.limaconsultoria.agendaapi.service;
 
 
 import com.limaconsultoria.agendaapi.domain.Profissional;
+import com.limaconsultoria.agendaapi.exception.BadRequestException;
 import com.limaconsultoria.agendaapi.mapper.ProfissionalMapper;
 import com.limaconsultoria.agendaapi.repository.ProfissionalRepository;
 import com.limaconsultoria.agendaapi.request.ProfissionalDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
@@ -23,7 +22,7 @@ public class ProfissionalService {
 
         public Profissional findByIdThrowBadRequestException(Long id) {
             return profissionalRepository.findById(id)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Profissional not Found"));
+                    .orElseThrow(() -> new BadRequestException("Profissional not Found"));
         }
         public List<Profissional> findByNome(String nome){
             return profissionalRepository.findByNome(nome);

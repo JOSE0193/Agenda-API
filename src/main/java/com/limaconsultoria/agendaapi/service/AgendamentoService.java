@@ -1,13 +1,12 @@
 package com.limaconsultoria.agendaapi.service;
 
 import com.limaconsultoria.agendaapi.domain.Agendamento;
+import com.limaconsultoria.agendaapi.exception.BadRequestException;
 import com.limaconsultoria.agendaapi.mapper.AgendamentoMapper;
 import com.limaconsultoria.agendaapi.request.AgendamentoDTO;
 import com.limaconsultoria.agendaapi.repository.AgendamentoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ import java.util.List;
 
     public Agendamento findByIdThrowBadRequestException(Long id) {
         return agendamentoRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Agendamento not Found"));
+                .orElseThrow(() -> new BadRequestException("Agendamento not Found"));
     }
 
     public Agendamento save(AgendamentoDTO agendamentoDTO) {

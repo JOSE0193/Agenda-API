@@ -2,13 +2,12 @@ package com.limaconsultoria.agendaapi.service;
 
 
 import com.limaconsultoria.agendaapi.domain.Servico;
+import com.limaconsultoria.agendaapi.exception.BadRequestException;
 import com.limaconsultoria.agendaapi.mapper.ServicoMapper;
 import com.limaconsultoria.agendaapi.repository.ServicoRepository;
 import com.limaconsultoria.agendaapi.request.ServicoDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
@@ -26,7 +25,7 @@ public class ServicoService {
 
         public Servico findByIdThrowBadRequestException(Long id) {
             return servicoRepository.findById(id)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Serviço not Found"));
+                    .orElseThrow(() -> new BadRequestException("Serviço not Found"));
         }
 
         public Servico save(ServicoDTO servicoDTO) {

@@ -1,10 +1,13 @@
 package com.limaconsultoria.agendaapi.domain;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -36,9 +39,10 @@ public class Cliente {
     @Column(name = "EMAIL")
     private String email;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Agendamento> agendamentos;
-
 
 
 }

@@ -2,6 +2,7 @@ package com.limaconsultoria.agendaapi.request;
 
 import lombok.Data;
 
+
 @Data
 public class ServicoDTO {
 

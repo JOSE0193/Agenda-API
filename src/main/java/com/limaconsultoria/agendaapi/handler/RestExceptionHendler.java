@@ -1,4 +1,4 @@
-package com.limaconsultoria.agendaapi.Hedler;
+package com.limaconsultoria.agendaapi.handler;
 
 import com.limaconsultoria.agendaapi.exception.BadRequestException;
 import com.limaconsultoria.agendaapi.exception.BadRequestDetails;
@@ -6,13 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class RestExceptionHendler {
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<BadRequestDetails> handlerBadRequest(BadRequestException badRequestException){
+    public ResponseEntity<BadRequestDetails> handlerBadRequestException(BadRequestException badRequestException){
         return new ResponseEntity<>(
                 BadRequestDetails.builder()
                         .timestamp(LocalDateTime.now())

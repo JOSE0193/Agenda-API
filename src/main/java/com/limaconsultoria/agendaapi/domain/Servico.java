@@ -1,10 +1,12 @@
 package com.limaconsultoria.agendaapi.domain;
 
-import com.sun.istack.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,7 +22,6 @@ public class Servico {
     @Column(name = "ID_SERVICO")
     private Long id;
 
-    @NotNull
     @Column(name = "NOME")
     private String nome;
 
@@ -28,12 +29,16 @@ public class Servico {
     private String categoria;
 
     @ManyToOne
-    @JoinColumn(name="ID_EMPRESA")
+    @JoinColumn(name = "ID_EMPRESA")
     private Empresa empresa;
 
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "servicos")
     private List<Profissional> profissionais;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "servico")
     private List<Agendamento> agendamentos;
 

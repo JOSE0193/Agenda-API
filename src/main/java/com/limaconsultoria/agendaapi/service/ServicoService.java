@@ -15,6 +15,7 @@ import java.util.List;
 public class ServicoService {
 
         private final ServicoRepository servicoRepository;
+        private final ServicoMapper mapper;
 
         public List<Servico> listAll() {
             return servicoRepository.findAll();
@@ -29,7 +30,7 @@ public class ServicoService {
         }
 
         public Servico save(ServicoDTO servicoDTO) {
-            return servicoRepository.save(ServicoMapper.INSTANCE.toServico(servicoDTO));
+            return servicoRepository.save(mapper.toServico(servicoDTO));
         }
 
         public void delete(Long id) {
@@ -38,7 +39,7 @@ public class ServicoService {
 
         public void replace(ServicoDTO servicoDTO) {
             Servico savedServico = findByIdThrowBadRequestException(servicoDTO.getId());
-            Servico servico = ServicoMapper.INSTANCE.toServico(servicoDTO);
+            Servico servico = mapper.toServico(servicoDTO);
             servico.setId(savedServico.getId());
             servicoRepository.save(servico);
         }

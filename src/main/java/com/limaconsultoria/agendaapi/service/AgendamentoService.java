@@ -7,13 +7,15 @@ import com.limaconsultoria.agendaapi.request.AgendamentoDTO;
 import com.limaconsultoria.agendaapi.repository.AgendamentoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-    public class AgendamentoService {
+public class AgendamentoService {
 
     private final AgendamentoRepository agendamentoRepository;
+    private final AgendamentoMapper mapper;
 
     public List<Agendamento> listAll() {
         return agendamentoRepository.findAll();
@@ -25,7 +27,7 @@ import java.util.List;
     }
 
     public Agendamento save(AgendamentoDTO agendamentoDTO) {
-        return agendamentoRepository.save(AgendamentoMapper.INSTANCE.toAgendamento(agendamentoDTO));
+        return agendamentoRepository.save(mapper.toAgendamento(agendamentoDTO));
     }
 
     public void delete(Long id) {
@@ -34,7 +36,7 @@ import java.util.List;
 
     public void replace(AgendamentoDTO agendamentoDTO) {
         Agendamento savedAgenda = findByIdThrowBadRequestException(agendamentoDTO.getId());
-        Agendamento agendamento = AgendamentoMapper.INSTANCE.toAgendamento(agendamentoDTO);
+        Agendamento agendamento = mapper.toAgendamento(agendamentoDTO);
         agendamento.setId(savedAgenda.getId());
         agendamentoRepository.save(agendamento);
     }

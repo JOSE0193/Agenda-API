@@ -12,11 +12,10 @@
 	<artifactId>agenda-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>agenda-api</name>
-	<description>"projeto de uma agenda profissional para consultórios"</description>
+	<description>projeto de uma agenda profissional para consultórios</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
-		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -73,9 +72,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<profiles>
+						<profile>dev</profile>
 					</profiles>
 					<excludes>
 						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
 				</configuration>
@@ -85,8 +87,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
-					<source>1.8</source> <!-- depending on your project -->
-					<target>1.8</target> <!-- depending on your project -->
+					<source>11</source> <!-- depending on your project -->
+					<target>11</target> <!-- depending on your project -->
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.mapstruct</groupId>

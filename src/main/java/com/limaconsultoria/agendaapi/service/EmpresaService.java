@@ -14,7 +14,6 @@ import java.util.List;
 public class EmpresaService {
 
         private final EmpresaRepository empresaRepository;
-        private final EmpresaMapper mapper;
 
         public List<Empresa> listAll() {
             return empresaRepository.findAll();
@@ -29,7 +28,7 @@ public class EmpresaService {
         }
 
         public Empresa save(EmpresaDTO empresaDTO) {
-            return empresaRepository.save(mapper.toEmpresa(empresaDTO));
+            return empresaRepository.save(EmpresaMapper.INSTANCE.toEmpresa(empresaDTO));
         }
 
         public void delete(Long id) {
@@ -38,7 +37,7 @@ public class EmpresaService {
 
         public void replace(EmpresaDTO empresaDTO) {
             Empresa savedEmpresa = findByIdThrowBadRequestException(empresaDTO.getId());
-            Empresa empresa = mapper.toEmpresa(empresaDTO);
+            Empresa empresa = EmpresaMapper.INSTANCE.toEmpresa(empresaDTO);
             empresa.setId(savedEmpresa.getId());
             empresaRepository.save(empresa);
         }

@@ -8,41 +8,38 @@ import com.limaconsultoria.agendaapi.repository.ProfissionalRepository;
 import com.limaconsultoria.agendaapi.request.ProfissionalDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ProfissionalService {
 
-    private final ProfissionalRepository profissionalRepository;
-    private final ProfissionalMapper mapper;
+        private final ProfissionalRepository profissionalRepository;
 
-    public List<Profissional> listAll() {
-        return profissionalRepository.findAll();
-    }
+        public List<Profissional> listAll() {
+            return profissionalRepository.findAll();
+        }
 
-    public Profissional findByIdThrowBadRequestException(Long id) {
-        return profissionalRepository.findById(id)
-                .orElseThrow(() -> new BadRequestException("Profissional not Found"));
-    }
+        public Profissional findByIdThrowBadRequestException(Long id) {
+            return profissionalRepository.findById(id)
+                    .orElseThrow(() -> new BadRequestException("Profissional not Found"));
+        }
+        public List<Profissional> findByNome(String nome){
+            return profissionalRepository.findByNome(nome);
+        }
 
-    public List<Profissional> findByNome(String nome) {
-        return profissionalRepository.findByNome(nome);
-    }
+        public Profissional save(ProfissionalDTO profissionalDTO) {
+            return profissionalRepository.save(ProfissionalMapper.INSTANCE.toProfissional(profissionalDTO));
+        }
 
-    public Profissional save(ProfissionalDTO profissionalDTO) {
-        return profissionalRepository.save(mapper.toProfissional(profissionalDTO));
-    }
+        public void delete(Long id) {
+            profissionalRepository.deleteById(id);
+        }
 
-    public void delete(Long id) {
-        profissionalRepository.deleteById(id);
-    }
-
-    public void replace(ProfissionalDTO profissionalDTO) {
-        Profissional savedProfissional = findByIdThrowBadRequestException(profissionalDTO.getId());
-        Profissional profissional = mapper.toProfissional(profissionalDTO);
-        profissional.setId(savedProfissional.getId());
-        profissionalRepository.save(profissional);
-    }
+        public void replace(ProfissionalDTO profissionalDTO) {
+            Profissional savedProfissional = findByIdThrowBadRequestException(profissionalDTO.getId());
+            Profissional profissional = ProfissionalMapper.INSTANCE.toProfissional(profissionalDTO);
+            profissional.setId(savedProfissional.getId());
+            profissionalRepository.save(profissional);
+        }
 }

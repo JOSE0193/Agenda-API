@@ -34,7 +34,8 @@ public class ServicoController {
 
     @PostMapping
     public ResponseEntity<Servico> save(@RequestBody ServicoDTO servicoDTO) {
-        return new ResponseEntity<>(servicoService.save(servicoDTO), HttpStatus.CREATED);
+        Servico servicoSalvo = servicoService.save(servicoDTO);
+        return new ResponseEntity<>(servicoSalvo, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")

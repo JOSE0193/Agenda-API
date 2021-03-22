@@ -8,38 +8,43 @@ import com.limaconsultoria.agendaapi.repository.ServicoRepository;
 import com.limaconsultoria.agendaapi.request.ServicoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ServicoService {
 
-        private final ServicoRepository servicoRepository;
+    private final ServicoRepository servicoRepository;
+    private final ServicoMapper servicoMapper;
 
-        public List<Servico> listAll() {
-            return servicoRepository.findAll();
-        }
-        public List<Servico> findByNome(String nome){
-            return servicoRepository.findByNome(nome);
-        }
+    public List<Servico> listAll() {
+        return servicoRepository.findAll();
+    }
 
-        public Servico findByIdThrowBadRequestException(Long id) {
-            return servicoRepository.findById(id)
-                    .orElseThrow(() -> new BadRequestException("Serviço not Found"));
-        }
+    public List<Servico> findByNome(String nome) {
+        return servicoRepository.findByNome(nome);
+    }
 
-        public Servico save(ServicoDTO servicoDTO) {
-            return servicoRepository.save(ServicoMapper.INSTANCE.toServico(servicoDTO));
-        }
+    public Servico findByIdThrowBadRequestException(Long id) {
+        return servicoRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException("Serviço not Found"));
+    }
 
-        public void delete(Long id) {
-            servicoRepository.deleteById(id);
-        }
+    public Servico save(ServicoDTO servicoDTO) {
+        Servico servico = servicoMapper.toEntity(servicoDTO);
+        servico = servicoRepository.save(servico);
+        return servico;
+    }
 
-        public void replace(ServicoDTO servicoDTO) {
-            Servico savedServico = findByIdThrowBadRequestException(servicoDTO.getId());
-            Servico servico = ServicoMapper.INSTANCE.toServico(servicoDTO);
-            servico.setId(savedServico.getId());
-            servicoRepository.save(servico);
-        }
+    public void delete(Long id) {
+        servicoRepository.deleteById(id);
+    }
+
+    public void replace(ServicoDTO servicoDTO) {
+        Servico savedServico = findByIdThrowBadRequestException(servicoDTO.getId());
+        Servico servico = servicoMapper.toEntity(servicoDTO);
+        servico.setId(savedServico.getId());
+        servicoRepository.save(servico);
+    }
 }

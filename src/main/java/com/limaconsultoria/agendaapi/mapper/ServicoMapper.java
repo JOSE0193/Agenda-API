@@ -3,13 +3,16 @@ package com.limaconsultoria.agendaapi.mapper;
 import com.limaconsultoria.agendaapi.domain.Servico;
 import com.limaconsultoria.agendaapi.request.ServicoDTO;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
+@Component
+public class ServicoMapper {
 
-@Mapper(componentModel = "spring")
-public interface ServicoMapper {
+    public Servico toEntity(ServicoDTO servicoDTO){
+        Servico servico = new Servico();
+        servico.setNome(servicoDTO.getNome());
+        servico.setCategoria(servicoDTO.getCategoria());
+        return servico;
+    }
 
-        ServicoMapper INSTANCE = Mappers.getMapper(ServicoMapper.class);
-
-        Servico toServico(ServicoDTO servicoDTO);
 }

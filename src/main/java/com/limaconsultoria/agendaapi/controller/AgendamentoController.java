@@ -31,19 +31,19 @@ public class AgendamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<Agendamento> save(@RequestBody @Valid AgendamentoDTO agendamentoDTO){
+    public ResponseEntity<Agendamento> save(@RequestBody @Valid AgendamentoDTO agendamentoDTO) {
         Agendamento agendamentoSave = agendamentoService.save(agendamentoDTO);
         return new ResponseEntity<>(agendamentoSave, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         agendamentoService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping
-    public ResponseEntity<Void> replace(@RequestBody AgendamentoDTO agendamentoDTO){
+    public ResponseEntity<Void> replace(@RequestBody AgendamentoDTO agendamentoDTO) {
         agendamentoService.replace(agendamentoDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

@@ -17,37 +17,38 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmpresaController {
 
-        private final EmpresaService empresaService;
+    private final EmpresaService empresaService;
 
-        @GetMapping
-        public ResponseEntity<List<Empresa>> list() {
-            return ResponseEntity.ok(empresaService.listAll());
-        }
+    @GetMapping
+    public ResponseEntity<List<Empresa>> list() {
+        return ResponseEntity.ok(empresaService.listAll());
+    }
 
-        @GetMapping(path = "/{id}")
-        public ResponseEntity<Empresa> findById(@PathVariable Long id) {
-            return ResponseEntity.ok(empresaService.findByIdThrowBadRequestException(id));
-        }
-        @GetMapping(path = "/find")
-        public ResponseEntity<List<Empresa>> findByNome(@RequestParam String nome) {
-            return ResponseEntity.ok(empresaService.findByNome(nome));
-        }
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Empresa> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(empresaService.findByIdThrowBadRequestException(id));
+    }
 
-        @PostMapping
-        public ResponseEntity<Empresa> save(@RequestBody @Valid EmpresaDTO empresaDTO){
-            Empresa empresaSave = empresaService.save(empresaDTO);
-            return new ResponseEntity<>(empresaSave, HttpStatus.CREATED);
-        }
+    @GetMapping(path = "/find")
+    public ResponseEntity<List<Empresa>> findByNome(@RequestParam String nome) {
+        return ResponseEntity.ok(empresaService.findByNome(nome));
+    }
 
-        @DeleteMapping(path = "/{id}")
-        public ResponseEntity<Void> delete(@PathVariable Long id){
-            empresaService.delete(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    @PostMapping
+    public ResponseEntity<Empresa> save(@RequestBody @Valid EmpresaDTO empresaDTO) {
+        Empresa empresaSave = empresaService.save(empresaDTO);
+        return new ResponseEntity<>(empresaSave, HttpStatus.CREATED);
+    }
 
-        @PutMapping
-        public ResponseEntity<Void> replace(@RequestBody EmpresaDTO empresaDTO){
-            empresaService.replace(empresaDTO);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        empresaService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> replace(@RequestBody EmpresaDTO empresaDTO) {
+        empresaService.replace(empresaDTO);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

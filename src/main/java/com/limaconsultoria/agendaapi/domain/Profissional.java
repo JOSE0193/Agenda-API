@@ -26,7 +26,7 @@ public class Profissional {
     @NotNull
     @Column(name = "NOME")
     private String nome;
-    
+
     @Column(name = "EMAIL")
     private String email;
 
@@ -37,9 +37,9 @@ public class Profissional {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "profissional_servico",
-           joinColumns = @JoinColumn(name = "ID_PROFISSIONAL"),
-           inverseJoinColumns = @JoinColumn(name = "ID_SERVICO"))
-        @JsonIgnore
-        private List<Servico> servicos;
+            joinColumns = @JoinColumn(name = "ID_PROFISSIONAL"),
+            inverseJoinColumns = @JoinColumn(name = "ID_SERVICO"))
+    @JsonIgnore
+    private List<Servico> servicos;
 
 }

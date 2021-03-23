@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AgendamentoMapper {
 
-    public Agendamento toEntity(AgendamentoDTO agendamentoDTO){
+    public Agendamento toEntity(AgendamentoDTO agendamentoDTO) {
         Agendamento agendamento = new Agendamento();
         agendamento.setData(agendamentoDTO.getData());
         agendamento.setObservacoes(agendamentoDTO.getObservacoes());

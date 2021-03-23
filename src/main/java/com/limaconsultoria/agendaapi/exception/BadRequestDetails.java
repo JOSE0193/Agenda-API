@@ -2,6 +2,7 @@ package com.limaconsultoria.agendaapi.exception;
 
 import lombok.Builder;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Data

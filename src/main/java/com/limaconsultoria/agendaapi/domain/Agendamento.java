@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @AllArgsConstructor
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @Data
 @Entity
-    public class Agendamento{
+public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_AGENDAMENTO")

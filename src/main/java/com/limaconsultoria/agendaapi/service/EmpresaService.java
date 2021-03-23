@@ -42,7 +42,8 @@ public class EmpresaService {
 
     public void replace(EmpresaDTO empresaDTO) {
         Empresa savedEmpresa = findByIdThrowBadRequestException(empresaDTO.getId());
-        Empresa empresa = empresaMapper.toEntity(empresaDTO);
+        Empresa empresa = empresaMapper.toEntity(
+                empresaDTO);
         empresa.setId(savedEmpresa.getId());
         empresaRepository.save(empresa);
     }

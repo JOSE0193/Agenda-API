@@ -14,6 +14,7 @@ import java.util.List;
     public class AgendamentoService {
 
     private final AgendamentoRepository agendamentoRepository;
+    private final AgendamentoMapper agendamentoMapper;
 
     public List<Agendamento> listAll() {
         return agendamentoRepository.findAll();
@@ -25,7 +26,9 @@ import java.util.List;
     }
 
     public Agendamento save(AgendamentoDTO agendamentoDTO) {
-        return agendamentoRepository.save(AgendamentoMapper.INSTANCE.toAgendamento(agendamentoDTO));
+       Agendamento agendamento = agendamentoMapper.toEntity(agendamentoDTO);
+       agendamento = agendamentoRepository.save(agendamento);
+       return agendamento;
     }
 
     public void delete(Long id) {
@@ -34,7 +37,7 @@ import java.util.List;
 
     public void replace(AgendamentoDTO agendamentoDTO) {
         Agendamento savedAgenda = findByIdThrowBadRequestException(agendamentoDTO.getId());
-        Agendamento agendamento = AgendamentoMapper.INSTANCE.toAgendamento(agendamentoDTO);
+        Agendamento agendamento = agendamentoMapper.toEntity(agendamentoDTO);
         agendamento.setId(savedAgenda.getId());
         agendamentoRepository.save(agendamento);
     }

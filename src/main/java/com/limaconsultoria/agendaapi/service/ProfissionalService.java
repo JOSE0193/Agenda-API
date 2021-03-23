@@ -15,6 +15,7 @@ import java.util.List;
 public class ProfissionalService {
 
         private final ProfissionalRepository profissionalRepository;
+        private final ProfissionalMapper profissionalMapper;
 
         public List<Profissional> listAll() {
             return profissionalRepository.findAll();
@@ -29,7 +30,9 @@ public class ProfissionalService {
         }
 
         public Profissional save(ProfissionalDTO profissionalDTO) {
-            return profissionalRepository.save(ProfissionalMapper.INSTANCE.toProfissional(profissionalDTO));
+            Profissional profissional = profissionalMapper.toEntity(profissionalDTO);
+            profissional = profissionalRepository.save(profissional);
+            return profissional;
         }
 
         public void delete(Long id) {
@@ -38,7 +41,7 @@ public class ProfissionalService {
 
         public void replace(ProfissionalDTO profissionalDTO) {
             Profissional savedProfissional = findByIdThrowBadRequestException(profissionalDTO.getId());
-            Profissional profissional = ProfissionalMapper.INSTANCE.toProfissional(profissionalDTO);
+            Profissional profissional = profissionalMapper.toEntity(profissionalDTO);
             profissional.setId(savedProfissional.getId());
             profissionalRepository.save(profissional);
         }

@@ -7,38 +7,43 @@ import com.limaconsultoria.agendaapi.repository.EmpresaRepository;
 import com.limaconsultoria.agendaapi.request.EmpresaDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class EmpresaService {
 
-        private final EmpresaRepository empresaRepository;
+    private final EmpresaRepository empresaRepository;
+    private final EmpresaMapper empresaMapper;
 
-        public List<Empresa> listAll() {
-            return empresaRepository.findAll();
-        }
-        public List<Empresa> findByNome(String nome){
-            return empresaRepository.findByNome(nome);
-        }
+    public List<Empresa> listAll() {
+        return empresaRepository.findAll();
+    }
 
-        public Empresa findByIdThrowBadRequestException(Long id) {
-            return empresaRepository.findById(id)
-                    .orElseThrow(() -> new BadRequestException("Empresa not Found"));
-        }
+    public List<Empresa> findByNome(String nome) {
+        return empresaRepository.findByNome(nome);
+    }
 
-        public Empresa save(EmpresaDTO empresaDTO) {
-            return empresaRepository.save(EmpresaMapper.INSTANCE.toEmpresa(empresaDTO));
-        }
+    public Empresa findByIdThrowBadRequestException(Long id) {
+        return empresaRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException("Empresa not Found"));
+    }
 
-        public void delete(Long id) {
-            empresaRepository.deleteById(id);
-        }
+    public Empresa save(EmpresaDTO empresaDTO) {
+        Empresa empresa = empresaMapper.toEntity(empresaDTO);
+        empresa = empresaRepository.save(empresa);
+        return empresa;
+    }
 
-        public void replace(EmpresaDTO empresaDTO) {
-            Empresa savedEmpresa = findByIdThrowBadRequestException(empresaDTO.getId());
-            Empresa empresa = EmpresaMapper.INSTANCE.toEmpresa(empresaDTO);
-            empresa.setId(savedEmpresa.getId());
-            empresaRepository.save(empresa);
-        }
+    public void delete(Long id) {
+        empresaRepository.deleteById(id);
+    }
+
+    public void replace(EmpresaDTO empresaDTO) {
+        Empresa savedEmpresa = findByIdThrowBadRequestException(empresaDTO.getId());
+        Empresa empresa = empresaMapper.toEntity(empresaDTO);
+        empresa.setId(savedEmpresa.getId());
+        empresaRepository.save(empresa);
+    }
 }

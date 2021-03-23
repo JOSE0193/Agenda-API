@@ -3,13 +3,16 @@ package com.limaconsultoria.agendaapi.mapper;
 
 import com.limaconsultoria.agendaapi.domain.Empresa;
 import com.limaconsultoria.agendaapi.request.EmpresaDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface EmpresaMapper {
+@Component
+public class EmpresaMapper {
 
-       EmpresaMapper INSTANCE = Mappers.getMapper(EmpresaMapper.class);
-
-       Empresa toEmpresa(EmpresaDTO empresaDTO);
+    public Empresa toEntity(EmpresaDTO empresaDTO) {
+        Empresa empresa = new Empresa();
+        empresa.setNome(empresaDTO.getNome());
+        empresa.setCnpj(empresaDTO.getCnpj());
+        empresa.setEmail(empresaDTO.getEmail());
+        return empresa;
+    }
 }

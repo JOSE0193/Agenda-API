@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("empresas")
@@ -32,8 +34,9 @@ public class EmpresaController {
         }
 
         @PostMapping
-        public ResponseEntity<Empresa> save(@RequestBody EmpresaDTO empresaDTO){
-            return new ResponseEntity<>(empresaService.save(empresaDTO), HttpStatus.CREATED);
+        public ResponseEntity<Empresa> save(@RequestBody @Valid EmpresaDTO empresaDTO){
+            Empresa empresaSave = empresaService.save(empresaDTO);
+            return new ResponseEntity<>(empresaSave, HttpStatus.CREATED);
         }
 
         @DeleteMapping(path = "/{id}")

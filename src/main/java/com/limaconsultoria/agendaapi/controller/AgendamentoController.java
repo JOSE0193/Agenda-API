@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -29,8 +31,9 @@ public class AgendamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<Agendamento> save(@RequestBody AgendamentoDTO agendamentoDTO){
-        return new ResponseEntity<>(agendamentoService.save(agendamentoDTO), HttpStatus.CREATED);
+    public ResponseEntity<Agendamento> save(@RequestBody @Valid AgendamentoDTO agendamentoDTO){
+        Agendamento agendamentoSave = agendamentoService.save(agendamentoDTO);
+        return new ResponseEntity<>(agendamentoSave, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")

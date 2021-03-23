@@ -3,15 +3,20 @@ package com.limaconsultoria.agendaapi.mapper;
 
 import com.limaconsultoria.agendaapi.domain.Cliente;
 import com.limaconsultoria.agendaapi.request.ClienteDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
+@Component
+public class ClienteMapper {
 
-@Mapper(componentModel = "spring")
-public interface ClienteMapper {
-
-       ClienteMapper INSTANCE = Mappers.getMapper(ClienteMapper.class);
-
-       Cliente toCliente(ClienteDTO clienteDTO);
+    public Cliente toEntity(ClienteDTO clienteDTO) {
+        Cliente cliente = new Cliente();
+        cliente.setNome(clienteDTO.getNome());
+        cliente.setNome(clienteDTO.getNome());
+        cliente.setCpf(clienteDTO.getCpf());
+        cliente.setDataNascimento(clienteDTO.getDataNascimento());
+        cliente.setSexo(clienteDTO.getSexo());
+        cliente.setEmail(clienteDTO.getEmail());
+        return cliente;
+    }
 }
 

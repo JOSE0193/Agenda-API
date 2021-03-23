@@ -1,22 +1,15 @@
 package com.limaconsultoria.agendaapi.request;
 
-import com.limaconsultoria.agendaapi.domain.Cliente;
-import com.limaconsultoria.agendaapi.domain.Profissional;
-import com.limaconsultoria.agendaapi.domain.Servico;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class AgendamentoDTO {
 
     private Long id;
+    @NotNull(message = "The birth date cannot be null")
     private String data;
     private String observacoes;
-    private Cliente cliente;
-    private Servico servico;
-    private Profissional profissional;
 
 }

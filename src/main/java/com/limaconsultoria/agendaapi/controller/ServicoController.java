@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("servicos")
@@ -33,9 +34,9 @@ public class ServicoController {
     }
 
     @PostMapping
-    public ResponseEntity<Servico> save(@RequestBody ServicoDTO servicoDTO) {
-        Servico servicoSalvo = servicoService.save(servicoDTO);
-        return new ResponseEntity<>(servicoSalvo, HttpStatus.CREATED);
+    public ResponseEntity<Servico> save(@RequestBody @Valid ServicoDTO servicoDTO) {
+        Servico servicoSave = servicoService.save(servicoDTO);
+        return new ResponseEntity<>(servicoSave, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{id}")

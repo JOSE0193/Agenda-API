@@ -15,6 +15,7 @@ import java.util.List;
 public class ClienteService {
 
         private final ClienteRepository clienteRepository;
+        private final ClienteMapper clienteMapper;
 
         public List<Cliente> listAll() {
             return clienteRepository.findAll();
@@ -29,7 +30,9 @@ public class ClienteService {
         }
 
         public Cliente save(ClienteDTO clienteDTO) {
-            return clienteRepository.save(ClienteMapper.INSTANCE.toCliente(clienteDTO));
+            Cliente cliente = clienteMapper.toEntity(clienteDTO);
+            cliente = clienteRepository.save(cliente);
+            return cliente;
         }
 
         public void delete(Long id) {
@@ -38,7 +41,7 @@ public class ClienteService {
 
         public void replace(ClienteDTO clienteDTO) {
             Cliente savedCliente = findByIdThrowBadRequestException(clienteDTO.getId());
-            Cliente cliente = ClienteMapper.INSTANCE.toCliente(clienteDTO);
+            Cliente cliente = clienteMapper.toEntity(clienteDTO);
             cliente.setId(savedCliente.getId());
             clienteRepository.save(cliente);
         }

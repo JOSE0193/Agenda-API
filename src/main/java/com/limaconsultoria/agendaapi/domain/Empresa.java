@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;

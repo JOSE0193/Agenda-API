@@ -4,12 +4,14 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 
-
 @Data
 public class ServicoDTO {
 
     private Long id;
-    @NotEmpty(message = "The servico name cannot be empty")
+
+    @NotEmpty(message = "Nome do serviço é obrigatório")
     private String nome;
+
     private String categoria;
+
 }

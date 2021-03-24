@@ -8,9 +8,12 @@ import javax.validation.constraints.NotEmpty;
 public class EmpresaDTO {
 
     private Long id;
-    @NotEmpty(message = "The empresa name cannot be empty")
+
+    @NotEmpty(message = "Nome da empresa é obrigatório")
     private String nome;
+
     private String cnpj;
+
     private String email;
 
 }

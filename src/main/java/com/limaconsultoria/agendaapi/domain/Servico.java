@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,11 +31,9 @@ public class Servico {
     @JoinColumn(name = "ID_EMPRESA")
     private Empresa empresa;
 
-
     @JsonIgnore
     @ManyToMany(mappedBy = "servicos")
     private List<Profissional> profissionais;
-
 
     @JsonIgnore
     @OneToMany(mappedBy = "servico")

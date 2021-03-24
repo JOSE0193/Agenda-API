@@ -49,6 +49,6 @@ public class ServicoController {
     public ResponseEntity<Void> replace(@RequestBody ServicoDTO servicoDTO) {
         servicoService.replace(servicoDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 
+    }
 }

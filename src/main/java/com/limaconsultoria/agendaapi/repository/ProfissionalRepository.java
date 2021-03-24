@@ -6,8 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 public interface ProfissionalRepository extends JpaRepository<Profissional, Long> {
+
     List<Profissional> findByNome(String nome);
+
 }

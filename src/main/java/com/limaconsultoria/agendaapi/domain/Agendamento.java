@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Data
 @Entity
 public class Agendamento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_AGENDAMENTO")

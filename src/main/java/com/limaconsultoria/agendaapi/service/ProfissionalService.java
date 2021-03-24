@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.service;
 
-
 import com.limaconsultoria.agendaapi.domain.Profissional;
 import com.limaconsultoria.agendaapi.exception.BadRequestException;
 import com.limaconsultoria.agendaapi.mapper.ProfissionalMapper;
@@ -46,5 +45,6 @@ public class ProfissionalService {
         Profissional profissional = profissionalMapper.toEntity(profissionalDTO);
         profissional.setId(savedProfissional.getId());
         profissionalRepository.save(profissional);
+
     }
 }

@@ -41,5 +41,6 @@ public class AgendamentoService {
         Agendamento agendamento = agendamentoMapper.toEntity(agendamentoDTO);
         agendamento.setId(savedAgenda.getId());
         agendamentoRepository.save(agendamento);
+
     }
 }

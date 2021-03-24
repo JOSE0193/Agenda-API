@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.controller;
 
-
 import com.limaconsultoria.agendaapi.domain.Empresa;
 import com.limaconsultoria.agendaapi.request.EmpresaDTO;
 import com.limaconsultoria.agendaapi.service.EmpresaService;
@@ -50,5 +49,6 @@ public class EmpresaController {
     public ResponseEntity<Void> replace(@RequestBody EmpresaDTO empresaDTO) {
         empresaService.replace(empresaDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 }

@@ -8,8 +8,10 @@ import javax.validation.constraints.NotNull;
 public class AgendamentoDTO {
 
     private Long id;
-    @NotNull(message = "The birth date cannot be null")
+
+    @NotNull(message = "Data do agendamento é obrigatória")
     private String data;
+
     private String observacoes;
 
 }

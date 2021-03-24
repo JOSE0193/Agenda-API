@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-
 @RequestMapping("agendamentos")
 @RestController
 @RequiredArgsConstructor
-
 public class AgendamentoController {
 
     private final AgendamentoService agendamentoService;
@@ -46,5 +44,6 @@ public class AgendamentoController {
     public ResponseEntity<Void> replace(@RequestBody AgendamentoDTO agendamentoDTO) {
         agendamentoService.replace(agendamentoDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 }

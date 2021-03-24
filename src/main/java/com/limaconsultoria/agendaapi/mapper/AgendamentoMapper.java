@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.mapper;
 
-
 import com.limaconsultoria.agendaapi.domain.Agendamento;
 import com.limaconsultoria.agendaapi.request.AgendamentoDTO;
 import org.springframework.stereotype.Component;
@@ -13,5 +12,6 @@ public class AgendamentoMapper {
         agendamento.setData(agendamentoDTO.getData());
         agendamento.setObservacoes(agendamentoDTO.getObservacoes());
         return agendamento;
+
     }
 }

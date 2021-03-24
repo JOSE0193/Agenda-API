@@ -6,8 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
+
     List<Empresa> findByNome(String nome);
+
 }

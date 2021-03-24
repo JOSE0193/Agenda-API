@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -29,7 +28,6 @@ public class Profissional {
 
     @Column(name = "EMAIL")
     private String email;
-
 
     @JsonIgnore
     @OneToMany(mappedBy = "profissional")

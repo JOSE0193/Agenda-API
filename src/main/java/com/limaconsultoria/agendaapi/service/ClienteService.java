@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.service;
 
-
 import com.limaconsultoria.agendaapi.domain.Cliente;
 import com.limaconsultoria.agendaapi.exception.BadRequestException;
 import com.limaconsultoria.agendaapi.mapper.ClienteMapper;
@@ -46,5 +45,6 @@ public class ClienteService {
         Cliente cliente = clienteMapper.toEntity(clienteDTO);
         cliente.setId(savedCliente.getId());
         clienteRepository.save(cliente);
+
     }
 }

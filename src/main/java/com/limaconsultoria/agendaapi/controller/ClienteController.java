@@ -49,6 +49,7 @@ public class ClienteController {
     public ResponseEntity<Void> replace(@RequestBody ClienteDTO clienteDTO) {
         clienteService.replace(clienteDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 }
 

@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.service;
 
-
 import com.limaconsultoria.agendaapi.domain.Servico;
 import com.limaconsultoria.agendaapi.exception.BadRequestException;
 import com.limaconsultoria.agendaapi.mapper.ServicoMapper;
@@ -46,5 +45,6 @@ public class ServicoService {
         Servico servico = servicoMapper.toEntity(servicoDTO);
         servico.setId(savedServico.getId());
         servicoRepository.save(servico);
+
     }
 }

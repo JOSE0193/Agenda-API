@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ServicoRepository extends JpaRepository<Servico, Long> {
+
     List<Servico> findByNome(String nome);
+
 }

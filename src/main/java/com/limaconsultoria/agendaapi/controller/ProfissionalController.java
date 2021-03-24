@@ -1,6 +1,5 @@
 package com.limaconsultoria.agendaapi.controller;
 
-
 import com.limaconsultoria.agendaapi.domain.Profissional;
 import com.limaconsultoria.agendaapi.request.ProfissionalDTO;
 import com.limaconsultoria.agendaapi.service.ProfissionalService;
@@ -50,6 +49,6 @@ public class ProfissionalController {
     public ResponseEntity<Void> replace(@RequestBody ProfissionalDTO profissionalDTO) {
         profissionalService.replace(profissionalDTO);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 
+    }
 }

@@ -11,7 +11,6 @@ public class ClienteMapper {
 
         Cliente cliente = new Cliente();
         cliente.setNome(clienteDTO.getNome());
-        cliente.setNome(clienteDTO.getNome());
         cliente.setCpf(clienteDTO.getCpf());
         cliente.setDataNascimento(clienteDTO.getDataNascimento());
         cliente.setSexo(clienteDTO.getSexo());
